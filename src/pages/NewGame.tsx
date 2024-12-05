@@ -8,7 +8,7 @@
   const NewGame: React.FC = () => {
     const [selectingPlayers, setSelectingPlayers] = useState<boolean>(true); // Pour gérer l'étape de sélection des joueurs
     
-    const [hoveredPlayer, setHoveredPlayer] = useState(null);
+    
 
 
     const [playerCount, setPlayerCount] = useState<number>(2);
@@ -217,10 +217,11 @@
           }}
         >
           <img
-            src={playerImages[count]}
+            src={playerImages[Number(count)]}
             alt={`${count} Players`}
-            style={{ width: "100%" }} // Ajustez si nécessaire
+            style={{ width: "100%" }}
           />
+
         </button>
       );
     })}
