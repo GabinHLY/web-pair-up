@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #000000;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #000000;
 }
 
 body {
@@ -31,13 +31,30 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  color: #111111;
+}
+
+h2 {
+  color: #111111;
+}
+
+h3 {
+  color: #111111;
+}
+
+p{
+  color: #111111;
+}
+
+label {
+  color: #111111;
 }
 
 button {
+  color: #111111;
   border-radius: 8px;
   border: 3px solid #D1E5B2;
+  background-color: #ffffff;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -62,15 +79,60 @@ button:focus-visible {
   gap: 1rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #111111;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #ffffff;
-  }
+.player{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
+ .player-button img:hover{
+  filter: brightness(0);
+  transition: ease 0.5s;
+ }
+
+ /* Style général pour la section */
+h2 {
+  color: #111111;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style des champs d'entrée et des libellés */
+label {
+  display: block;
+  font-size: 14px;
+  color: #111111;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #D1E5B2;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #111111;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #111111;
+  box-shadow: 0 0 5px #D1E5B2;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+li{
+  color: #111111;
+}
+
+
+

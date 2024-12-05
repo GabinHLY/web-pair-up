@@ -1,9 +1,15 @@
   import React, { useState } from "react";
   import { Link } from "react-router-dom";
+  import player2 from '../assets/Players-2.png';
+  import player3 from '../assets/players-3.png';
+  import player4 from '../assets/players-4.png';
   import confetti from "canvas-confetti";
 
   const NewGame: React.FC = () => {
     const [selectingPlayers, setSelectingPlayers] = useState<boolean>(true); // Pour gérer l'étape de sélection des joueurs
+    
+    const [hoveredPlayer, setHoveredPlayer] = useState(null);
+
 
     const [playerCount, setPlayerCount] = useState<number>(2);
     const [playerNames, setPlayerNames] = useState<string[]>(["", ""]);
@@ -188,27 +194,38 @@
         <h1>New Game</h1>
 
         {selectingPlayers && (
-          <div>
-            <h2>Choose number of players</h2>
-            {[2, 3, 4].map((count) => (
-              <button
-                key={count}
-                onClick={() => {
-                  setPlayerCount(count);
-                  setScores(Array(count).fill(0));
-                  setPlayerHtmlCards(Array(count).fill([]));
-                  setPlayerCssCards(Array(count).fill([]));
-                  setPlayerNames(Array(count).fill(""));
-                  setErrors(Array(count).fill(""));
-                  setSelectingPlayers(false); 
-                }}
-              >
-                {count} Players
-              </button>
-            ))}
-          </div>
-        )}
+  <div className="player">
+    <h2>Choose number of players</h2>
+    {[2, 3, 4].map((count) => {
+      const playerImages = {
+        2: player2,
+        3: player3,
+        4: player4,
+      };
 
+      return (
+        <button className="player-button"
+          key={count}
+          onClick={() => {
+            setPlayerCount(count);
+            setScores(Array(count).fill(0));
+            setPlayerHtmlCards(Array(count).fill([]));
+            setPlayerCssCards(Array(count).fill([]));
+            setPlayerNames(Array(count).fill(""));
+            setErrors(Array(count).fill(""));
+            setSelectingPlayers(false);
+          }}
+        >
+          <img
+            src={playerImages[count]}
+            alt={`${count} Players`}
+            style={{ width: "100%" }} // Ajustez si nécessaire
+          />
+        </button>
+      );
+    })}
+  </div>
+)}
 {!selectingPlayers && !gameStarted && !gameEnded && (
   <>
     <h2>Player's name</h2>
@@ -235,10 +252,10 @@
 )}
 
         {gameStarted && !htmlSubSelection && !cssSubSelection && (
-          <div>
+          <div className="homepage">
             <h2>It's {playerNames[currentPlayerIndex]}'s turn!</h2>
             <p>Select a case:</p>
-            <div style={{ display: "flex", gap: "1rem" }}>
+            <div className="cards">
               {caseOptions.map((caseOption, index) => (
                 <button
                   key={index}
@@ -261,9 +278,9 @@
         )}
 
         {htmlSubSelection && (
-          <div>
+          <div className="homepage">
             <h2>Choose an HTML tag</h2>
-            <div style={{ display: "flex", gap: "1rem" }}>
+            <div className="cards">
               {htmlOptions.map((tag, index) => (
                 <button key={index} onClick={() => handleHtmlSelection(tag)}>
                   {tag}
@@ -275,9 +292,9 @@
         )}
 
         {cssSubSelection && (
-          <div>
+          <div className="homepage">
             <h2>Choose a CSS property</h2>
-            <div style={{ display: "flex", gap: "1rem" }}>
+            <div className="cards">
               {cssOptions.map((property, index) => (
                 <button key={index} onClick={() => handleCssSelection(property)}>
                   {property}
