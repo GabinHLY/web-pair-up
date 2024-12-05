@@ -1,6 +1,6 @@
   import React, { useState } from "react";
   import { Link } from "react-router-dom";
-  import player2 from '../assets/Players-2.png';
+  import player2 from '../assets/players-2.png';
   import player3 from '../assets/players-3.png';
   import player4 from '../assets/players-4.png';
   import confetti from "canvas-confetti";
