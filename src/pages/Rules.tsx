@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Rules() {
@@ -45,7 +45,7 @@ function Rules() {
         HTML Pair: Two identical cards with the same HTML tag (e.g., <h1> and <h1>).
 
         CSS Pair: Two identical cards with the same CSS rule (e.g., color: red; and color: red;).
-        
+
         Using CSS Pairs: CSS pairs can only be applied to HTML elements already on your board.
         Unused CSS pairs are kept aside until a matching HTML element is placed.
 
