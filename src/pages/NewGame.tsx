@@ -217,7 +217,7 @@
           }}
         >
           <img
-            src={playerImages[Number(count)]}
+            src={playerImages[count as keyof typeof playerImages]}
             alt={`${count} Players`}
             style={{ width: "100%" }}
           />
