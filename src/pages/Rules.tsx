@@ -113,10 +113,10 @@ function Rules() {
   };
 
   return (
-    <div>
+    <div className="player">
       <h1>{rulesPages[currentPage].title}</h1>
       <p style={{ whiteSpace: "pre-line" }}>{rulesPages[currentPage].content}</p>
-      <div>
+      <div className="prenext">
         <button onClick={previousPage} disabled={currentPage === 0}>
           Previous
         </button>

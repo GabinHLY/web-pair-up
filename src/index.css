@@ -89,6 +89,11 @@ button:focus-visible {
   filter: brightness(0);
   transition: ease 0.5s;
  }
+ .prenext{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+ }
 
  /* Style général pour la section */
 h2 {
