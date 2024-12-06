@@ -209,6 +209,37 @@
         handleNextTurn();
       }
     };
+
+    
+    const handleBonusEffect = (bonus: string) => {
+      // Implémente la logique pour chaque bonus
+      switch (bonus) {
+        case "Copy Pasta: Steal a pair":
+          alert("Steal a pair logic goes here!");
+          break;
+        case "Extra Turn: Replay":
+          alert("Replay logic goes here!");
+          break;
+        // Ajoute les autres cases pour gérer chaque bonus
+        default:
+          alert("Unimplemented bonus: " + bonus);
+      }
+    };
+    
+    const handleMalusEffect = (malus: string) => {
+      // Implémente la logique pour chaque malus
+      switch (malus) {
+        case "Bug: Attach to a card; it no longer counts":
+          alert("Bug logic goes here!");
+          break;
+        case "Broken Tag: Lose a previously collected card":
+          alert("Lose a card logic goes here!");
+          break;
+        // Ajoute les autres cases pour gérer chaque malus
+        default:
+          alert("Unimplemented malus: " + malus);
+      }
+    };
     
 
     return (
@@ -296,7 +327,9 @@
               <strong>CSS Cards:</strong>{" "}
               {playerCssCards[currentPlayerIndex].join(", ") || "None"}
             </p>
+            <button onClick={handleEndGame}>End Game</button>
           </div>
+          
         )}
 
         {htmlSubSelection && (
