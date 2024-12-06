@@ -33,7 +33,7 @@
       "HTML",
       "CSS",
       "Bonus",
-      "Malus",
+      "Penalty",
       "No Pair",
     ]);
 
@@ -237,7 +237,7 @@
           break;
         // Ajoute les autres cases pour gérer chaque malus
         default:
-          alert("Unimplemented malus: " + malus);
+          alert("Unimplemented penalty: " + malus);
       }
     };
     
