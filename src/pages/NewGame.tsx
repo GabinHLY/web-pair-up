@@ -41,17 +41,17 @@
     const cssOptions = ["color", "background-color", "font-size", "border-radius"];
 
     const bonusOptions = [
-      "Copy Pasta: Steal a pair from another player.",
-      "Extra Turn: Play another turn immediately.",
-      "Double Points: Double points for the next valid pair.",
-      "Free Match: Match this card with any other card.",
+      "Copy Pasta: Steal a pair",
+      "Extra Turn: Replay",
+      "Semantic Superstar: Bonus points for semantic tags",
+      "Dark Mode: Double points for CSS",
     ];
-
+    
     const malusOptions = [
-      "Bug: Attach this to a card; it no longer counts.",
-      "Broken Tag: Lose a previously collected card.",
-      "Syntax Error: Skip your next turn.",
-      "CSS Overload: Discard one matched pair.",
+      "Bug: Attach to a card; it no longer counts",
+      "Broken Tag: Lose a previously collected card",
+      "Syntax Error: Skip next turn",
+      "404 Redirect: Exchange CSS cards",
     ];
 
     const getRandomOption = (options: string[]) => {
@@ -69,7 +69,28 @@
       setHtmlSubSelection(false);
       setCssSubSelection(false);
       setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % playerCount);
+      checkEndGame(); 
     };
+
+    const checkEndGame = () => {
+      const winnerIndex = playerHtmlCards.findIndex(
+        (htmlCards, index) =>
+          htmlCards.length === 4 && playerCssCards[index].length === 4
+      );
+    
+      if (winnerIndex !== -1) {
+        setGameStarted(false);
+        setGameEnded(true);
+        confetti({
+          particleCount: 1000,
+          spread: 500,
+          origin: { y: 0.4 },
+        });
+        alert(`🎉 ${playerNames[winnerIndex]} has won the game! 🎉`);
+      }
+    };
+    
+    
 
     const handleEndGame = () => {
       setGameStarted(false);
@@ -163,6 +184,97 @@
       handleNextTurn();
     };
 
+    const handleBonusEffect = (bonus: string) => {
+      switch (bonus) {
+        case "Copy Pasta":
+          const opponentIndex = (currentPlayerIndex + 1) % playerCount;
+          const availablePairs = playerHtmlCards[opponentIndex].map(
+            (htmlCard, index) => `${htmlCard}-${playerCssCards[opponentIndex][index]}`
+          );
+    
+          if (availablePairs.length === 0) {
+            alert("No pairs available to steal!");
+            break;
+          }
+    
+          const pairToSteal = prompt(
+            `Choose a pair to steal: ${availablePairs.join(", ")}`
+          );
+    
+          if (pairToSteal && availablePairs.includes(pairToSteal)) {
+            const [htmlCard, cssCard] = pairToSteal.split("-");
+            setPlayerHtmlCards((prev) => {
+              const newCards = [...prev];
+              newCards[opponentIndex] = newCards[opponentIndex].filter(
+                (card) => card !== htmlCard
+              );
+              newCards[currentPlayerIndex] = [
+                ...newCards[currentPlayerIndex],
+                htmlCard,
+              ];
+              return newCards;
+            });
+    
+            setPlayerCssCards((prev) => {
+              const newCards = [...prev];
+              newCards[opponentIndex] = newCards[opponentIndex].filter(
+                (card) => card !== cssCard
+              );
+              newCards[currentPlayerIndex] = [
+                ...newCards[currentPlayerIndex],
+                cssCard,
+              ];
+              return newCards;
+            });
+    
+            alert("You successfully stole a pair!");
+          } else {
+            alert("Invalid selection. Turn skipped.");
+          }
+          break;
+    
+        case "Extra Turn":
+          alert("You get another turn!");
+          return; // Laisse le joueur rejouer sans passer au tour suivant
+          break;
+    
+        case "Semantic Superstar":
+          const semanticTags = ["h1", "p"];
+          const playerCards = playerHtmlCards[currentPlayerIndex];
+          const semanticCount = playerCards.filter((card) =>
+            semanticTags.includes(card)
+          ).length;
+    
+          const points = semanticCount * 2; // Double points for semantic tags
+          setScores((prev) => {
+            const newScores = [...prev];
+            newScores[currentPlayerIndex] += points;
+            return newScores;
+          });
+    
+          alert(
+            `You gained ${points} bonus points for semantic tags!`
+          );
+          break;
+    
+        case "Dark Mode":
+          alert("Your CSS cards will now score double points!");
+          setScores((prev) => {
+            const newScores = [...prev];
+            newScores[currentPlayerIndex] += playerCssCards[currentPlayerIndex].length * 2;
+            return newScores;
+          });
+          break;
+    
+        default:
+          alert("Invalid bonus!");
+      }
+    
+      // Passe automatiquement au prochain tour après avoir utilisé un bonus (sauf "Extra Turn")
+      handleNextTurn();
+    };
+    
+
     const handleCaseSelection = (selectedCase: string) => {
       if (selectedCase === "HTML") {
         setHtmlSubSelection(true);
@@ -177,17 +289,18 @@
         setCssSubSelection(true);
       } else if (selectedCase === "Bonus") {
         const bonus = getRandomOption(bonusOptions);
-        alert(`${playerNames[currentPlayerIndex]} win a bonus ${bonus}`);
-        handleNextTurn();
+        alert(`${playerNames[currentPlayerIndex]} wins a bonus: ${bonus}`);
+        handleBonusEffect(bonus); // Utilisation de la nouvelle fonction
       } else if (selectedCase === "Malus") {
         const malus = getRandomOption(malusOptions);
-        alert(`${playerNames[currentPlayerIndex]} get a penalty ${malus}`);
-        handleNextTurn();
+        alert(`${playerNames[currentPlayerIndex]} receives a penalty: ${malus}`);
+        handleMalusEffect(malus); // Utilisation de la nouvelle fonction
       } else {
         alert(`${playerNames[currentPlayerIndex]} choose ${selectedCase}.`);
         handleNextTurn();
       }
     };
+    
 
     return (
       <div>
@@ -274,7 +387,6 @@
               <strong>CSS Cards:</strong>{" "}
               {playerCssCards[currentPlayerIndex].join(", ") || "None"}
             </p>
-            <button onClick={handleEndGame}>End Game</button>
           </div>
         )}
 
