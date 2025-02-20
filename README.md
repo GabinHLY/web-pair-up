@@ -1,50 +1,46 @@
-# React + TypeScript + Vite
+### **README pour Web Pair Up**  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Web Pair Up - Add-on pour jeu de société  
 
-Currently, two official plugins are available:
+Projet de cours | Calculateur de score | Classement dynamique  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Présentation  
+Web Pair Up est un add-on conçu pour un jeu de société, permettant de :  
+- Compter les points des joueurs en temps réel  
+- Appliquer automatiquement les bonus et malus  
+- Générer un classement dynamique selon les scores  
 
-## Expanding the ESLint configuration
+Objectif : Faciliter le suivi des scores et rendre le jeu plus fluide et interactif.  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Fonctionnalités  
+- Calcul automatique des points  
+- Gestion des bonus/malus  
+- Affichage en temps réel du classement des joueurs  
+- Interface simple et intuitive  
 
-- Configure the top-level `parserOptions` property like this:
+## Stack technique  
+- Frontend : HTML, CSS, JavaScript  
+- Backend : (À préciser si applicable)  
+- Frameworks/Libraries : (Si tu utilises React, Vue, etc.)  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Aperçu  
+(Ajouter une capture d’écran ou un GIF montrant l’interface en action.)  
+
+## Installation & Usage  
+1. Cloner le repo  
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+git clone https://github.com/TonGitHub/Web-Pair-Up.git
+cd Web-Pair-Up
 ```
+2. Lancer le projet  
+(Ajouter les étapes si un serveur est nécessaire, sinon supprimer cette section.)  
+
+3. Jouer et profiter !  
+
+## License  
+(Ajouter une licence comme MIT si nécessaire.)  
+
+## Contact  
+Gabin DUBOC – LinkedIn | GitHub  
+
+Un projet fun pour améliorer l’expérience des jeux de société !
