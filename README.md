@@ -19,26 +19,21 @@ Objectif : Faciliter le suivi des scores et rendre le jeu plus fluide et interac
 - Interface simple et intuitive  
 
 ## Stack technique  
-- Frontend : HTML, CSS, JavaScript  
-- Backend : (À préciser si applicable)  
-- Frameworks/Libraries : (Si tu utilises React, Vue, etc.)  
-
-## Aperçu  
-(Ajouter une capture d’écran ou un GIF montrant l’interface en action.)  
+- Frontend : React  
 
 ## Installation & Usage  
 1. Cloner le repo  
 ```
-git clone https://github.com/TonGitHub/Web-Pair-Up.git
-cd Web-Pair-Up
+git clone https://github.com/GabinHLY/web-pair-up.git
+cd web-pair-up
 ```
-2. Lancer le projet  
-(Ajouter les étapes si un serveur est nécessaire, sinon supprimer cette section.)  
+2. Lancer le projet
+```
+npm run dev
+```
 
-3. Jouer et profiter !  
+4. Jouer et profiter !  
 
-## License  
-(Ajouter une licence comme MIT si nécessaire.)  
 
 ## Contact  
 Gabin DUBOC – LinkedIn | GitHub  
